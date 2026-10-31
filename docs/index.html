@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Documentation for IW Spatial Visual Editor 0.4.0.">
+  <meta name="theme-color" content="#fffaf2">
+  <title>Documentation — IW Spatial Visual Editor</title>
+  <link rel="icon" href="../assets/iw-spatial-editor-logo.png" type="image/png">
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../site-config.js"></script>
+  <script src="../assets/site.js" defer></script>
+</head>
+<body class="docs-page">
+  <a class="skip-link" href="#docs-main">Skip to documentation</a>
+  <header class="site-header docs-header" data-header>
+    <div class="shell header-inner">
+      <a class="brand" href="../index.html" aria-label="IW Spatial Visual Editor home">
+        <img src="../assets/iw-spatial-editor-logo.png" width="46" height="46" alt="">
+        <span class="brand-name"><strong>IW Spatial</strong><small>Visual Editor</small></span>
+      </a>
+      <nav class="site-nav" aria-label="Documentation navigation">
+        <a href="../index.html">Overview</a>
+        <a class="nav-github" data-link="launch" href="../app/index.html">Open editor <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4"/></svg></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="docs-main">
+    <section class="docs-hero">
+      <div class="shell">
+        <p class="eyebrow"><span></span> Version 0.4.0 · Project format v3</p>
+        <h1>Visual Editor<br>documentation.</h1>
+        <p>Everything needed to create, edit, validate, save, and export maps for IW Spatial Context 1.0 RC3 / schema 1.2.</p>
+        <div class="docs-actions">
+          <a class="button button-primary" data-link="launch" href="../app/index.html">Open Visual Editor</a>
+          <a class="button button-secondary" data-link="download" href="../downloads/IW-Spatial-Editor-0.4.0.zip">Download offline</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="shell docs-layout">
+      <aside class="docs-toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <a href="#start">Start</a>
+        <a href="#workflow">Authoring workflow</a>
+        <a href="#controls">Controls</a>
+        <a href="#precision">Precision and snapping</a>
+        <a href="#data">Data behavior</a>
+        <a href="#formats">Files and export</a>
+        <a href="#privacy">Privacy</a>
+      </aside>
+
+      <article class="docs-content">
+        <section id="start">
+          <p class="eyebrow"><span></span> Start</p>
+          <h2>Open it and begin.</h2>
+          <p>The Visual Editor is one self-contained HTML application. Use the hosted version, or open <code>dist/index.html</code> from the downloaded package in a modern browser. No installation, local server, account, or network connection is required.</p>
+          <p>The initial view contains a small Eldren demonstration world. Choose <strong>New</strong> for an empty project, <strong>Open project</strong> for an existing <code>.iwspatial</code> file, or <strong>Import YAML</strong> to begin from Spatial Context source files.</p>
+          <div class="docs-note"><strong>Compatibility:</strong> Editor 0.4.0 targets IW Spatial Context 1.0 RC3 and schema 1.2.</div>
+        </section>
+
+        <section id="workflow">
+          <p class="eyebrow"><span></span> Authoring workflow</p>
+          <h2>From reference map to source files.</h2>
+          <ol>
+            <li>Optionally load a background image and calibrate its X/Y bounds in the Project inspector.</li>
+            <li>Draw locations, paths, and polygonal area geometries. Drag points or vertices to reposition them.</li>
+            <li>Classify objects with the shared Type and Subtype controls. Built-in values use consistent map colors; custom values remain available.</li>
+            <li>Marquee-select mixed geometry. Use Shift to add or Ctrl/Alt to remove, then drag any selected object to move the complete group.</li>
+            <li>Double-click path segments or polygon boundaries to add vertices. Reverse ordered paths with <strong>Flip direction</strong>.</li>
+            <li>Save the complete working project as <code>.iwspatial</code>.</li>
+            <li>Run <strong>Validate</strong>, then export <code>world-geography.yaml</code> and <code>world-spatial.yaml</code>.</li>
+          </ol>
+        </section>
+
+        <section id="controls">
+          <p class="eyebrow"><span></span> Controls</p>
+          <h2>Canvas shortcuts.</h2>
+          <ul class="shortcut-grid">
+            <li><span>Zoom around cursor</span><kbd>Mouse wheel</kbd></li>
+            <li><span>Pan canvas</span><kbd>Space + drag</kbd></li>
+            <li><span>Pan canvas</span><kbd>Middle/right drag</kbd></li>
+            <li><span>Add to selection</span><kbd>Shift</kbd></li>
+            <li><span>Remove from selection</span><kbd>Ctrl / Alt</kbd></li>
+            <li><span>Finish path or polygon</span><kbd>Enter</kbd></li>
+            <li><span>Remove last draft point</span><kbd>Backspace</kbd></li>
+            <li><span>Insert segment vertex</span><kbd>Double-click</kbd></li>
+            <li><span>Delete selection or vertex</span><kbd>Delete</kbd></li>
+            <li><span>Undo</span><kbd>Ctrl/Cmd + Z</kbd></li>
+            <li><span>Redo</span><kbd>Ctrl/Cmd + Shift + Z</kbd></li>
+            <li><span>Save project</span><kbd>Ctrl/Cmd + S</kbd></li>
+          </ul>
+          <h3>Marquee and group movement</h3>
+          <p>Drag across empty map space to select every intersecting location, path, and polygon. Shift-marquee adds to the selection; Ctrl/Alt-marquee removes. Drag any selected object to move the complete selection without changing relative positions.</p>
+          <h3>Vertex editing</h3>
+          <p>Select one path or polygon to expose its vertices. Drag a vertex to move only that point. Double-click a segment or boundary—or choose <strong>Insert midpoint</strong> in the inspector—to add a vertex exactly where it is needed.</p>
+        </section>
+
+        <section id="precision">
+          <p class="eyebrow"><span></span> Precision and snapping</p>
+          <h2>One-metre view, ten-metre authoring.</h2>
+          <p>X/Y coordinates are kilometres; elevation is metres. The viewport uses a logarithmic scale from <code>0.001</code> to <code>1 km/px</code>. At maximum zoom, one screen pixel represents one metre.</p>
+          <p><strong>Snap points to 10 m grid</strong> is enabled by default. It matches Spatial Context's normal <code>0.01 km</code> horizontal resolution and applies consistently to:</p>
+          <ul>
+            <li>new locations, paths, and polygon points;</li>
+            <li>vertex insertion and individual dragging;</li>
+            <li>group movement and linked intersections;</li>
+            <li>inspector coordinate edits;</li>
+            <li>initial-navigation X/Y values.</li>
+          </ul>
+          <p>Disable snapping only when imported data or a deliberate authoring choice requires one-metre coordinates. The project stores both <code>snap.enabled</code> and <code>snap.stepKm</code>.</p>
+        </section>
+
+        <section id="data">
+          <p class="eyebrow"><span></span> Data behavior</p>
+          <h2>Visual changes with structural consequences.</h2>
+          <h3>Classifications</h3>
+          <p>Shared classifications use <code>layer</code> as Type. Location and area Subtype is stored in <code>kind</code>; path Subtype remains <code>type</code> for schema compatibility. Built-in values receive consistent colors, while <strong>Other / custom</strong> preserves author-defined values.</p>
+          <h3>Ordered paths</h3>
+          <p>Path order is meaningful. Water paths should run from source to mouth. Cumulative distances are recalculated automatically after geometry edits.</p>
+          <h3>Linked intersections</h3>
+          <p>When a location and path point share a <code>location_id</code>, moving either keeps all linked X/Y coordinates aligned. Each record retains its own elevation.</p>
+          <h3>YAML support</h3>
+          <p>The importer handles mappings, sequences, flow coordinate arrays and maps, comments, quoted scalars, and literal or folded block text. Anchors, aliases, tags, and multi-document streams are intentionally unsupported.</p>
+          <div class="docs-note"><strong>Preservation:</strong> Existing fields that the editor does not expose are retained during the project session and re-exported.</div>
+        </section>
+
+        <section id="formats">
+          <p class="eyebrow"><span></span> Files and export</p>
+          <h2>Working state in; clean sources out.</h2>
+          <h3><code>.iwspatial</code> project</h3>
+          <p>The primary authoring format embeds the reference image, map data, layer visibility, viewport, metric zoom, snapping preference, and selection. Version 3 projects remain portable between computers; earlier editor projects are migrated and their viewport scales are clamped safely.</p>
+          <h3>Spatial Context YAML</h3>
+          <p>Export produces <code>world-geography.yaml</code> and <code>world-spatial.yaml</code>. Background imagery and other editor-only state are never written to those files.</p>
+          <h3>Validation</h3>
+          <p>Run validation before export. It checks the structures and relationships the editor can verify, then reports problems without silently rewriting intent.</p>
+        </section>
+
+        <section id="privacy">
+          <p class="eyebrow"><span></span> Privacy and portability</p>
+          <h2>Your map stays yours.</h2>
+          <p>The Visual Editor has no analytics, API calls, accounts, uploads, or runtime dependencies. Every open, import, save, and export operation happens locally in the browser.</p>
+          <div class="docs-actions">
+            <a class="button button-primary" data-link="launch" href="../app/index.html">Open Visual Editor</a>
+            <a class="button button-secondary" data-link="github" href="https://github.com/your-account/iw-spatial-visual-editor">View repository</a>
+          </div>
+        </section>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
