@@ -6,5 +6,5 @@ window.IW_EDITOR_SITE_CONFIG = {
   launchUrl: "./app/",
   docsUrl: "./docs/",
   downloadUrl: "./downloads/IW-Spatial-Editor-0.4.0.zip",
-  githubUrl: "https://github.com/your-account/iw-spatial-visual-editor"
+  githubUrl: "https://github.com/jan-maska/iw-spatial-visual-editor"
 };
